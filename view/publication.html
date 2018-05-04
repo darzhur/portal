@@ -1,0 +1,29 @@
+<h1><?=$pub->heading;?></h1>
+<p><?=$pub->text;?></p>
+<p><strong>Опубликовано: </strong><?=$pub->date;?></p>
+
+<?if($pub instanceof news):?>
+	<strong>Источник: </strong><?=$pub->source;?><br/>
+<?endif;?>
+
+<?if($pub instanceof articles):?>
+	<strong>Авторы: </strong><?=$pub->authors;?><br/>
+	<strong>Тип публикации: </strong>статья<br/>
+	<strong>Средняя оценка: </strong><?=$pub->mark;?>
+	<p><strong>Оцените статью: </strong>
+	<form method="post" action="/<?=BASE?>publication/mark/<?=$pub->id;?>/<?=$pub->user_id;?>">
+	   <input type="radio" name="mark" value="1">1
+	   <input type="radio" name="mark" value="2">2
+	   <input type="radio" name="mark" value="3">3
+	   <input type="radio" name="mark" value="4">4
+	   <input type="radio" name="mark" value="5" checked>5
+	   </p>
+	   <input type="submit" name="Отправить">
+	 </form>
+<?endif;?>
+
+<?if($pub instanceof ads):?>
+<strong>Действительнo до: </strong><?=$pub->expirationdate;?>
+<?endif;?>
+	
+<div class="main-btn"><a href="/<?=BASE?>publication/showPubs/">Назад</a></div>
